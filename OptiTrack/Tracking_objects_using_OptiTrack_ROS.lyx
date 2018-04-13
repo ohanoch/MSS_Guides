@@ -1,0 +1,407 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Tracking objects using OptiTrack system and ROS
+\end_layout
+
+\begin_layout Author
+Made by Or Hanoch for the MSS at the University of the Witwatersrand
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+section{Introduction}
+\end_layout
+
+\begin_layout Plain Layout
+
+This guide is intended to help someone new to Optitrack to get started with
+ initial setup, tracking objects using Optitrack Motive software, and transferin
+g tracking data to a Linux machine running ROS.
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+This guide was tested using Windows 7 with Optitrack Motive and Ubuntu 16.04
+ with ROS Kinetic, using a NetGear Nighthawk router to connect the two.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Pre-Setup
+\end_layout
+
+\begin_layout Subsection
+Required Hardware and Software
+\end_layout
+
+\begin_layout Enumerate
+1st PC running Windows 7
+\end_layout
+
+\begin_layout Enumerate
+2nd PC running Ubuntu 16.04 (or any other Linux distribution you have ROS
+ working on)
+\end_layout
+
+\begin_layout Enumerate
+NetGear Nighthawk router (or any other router)
+\end_layout
+
+\begin_layout Enumerate
+Optitrack Motive Tracker hardware license dongle (USB stick)
+\end_layout
+
+\begin_layout Enumerate
+At least 2 Optitrack Flex13 cameras mounted (on tripods or on a wall or
+ in any other configuration.
+\end_layout
+
+\begin_layout Enumerate
+An Optitrack Optihub2
+\end_layout
+
+\begin_layout Enumerate
+Long USB cables provided by Optitrack
+\end_layout
+
+\begin_layout Subsection
+Connecting Everything
+\end_layout
+
+\begin_layout Enumerate
+Connect both computers to the NetGear router using Ethernet cables.
+\end_layout
+
+\begin_layout Enumerate
+Connect the Flex13 cameras to the OptiHub2 using the long USB cables.
+\end_layout
+
+\begin_layout Enumerate
+Connect the OptiHub2 to the Windows PC using a long USB cable.
+\end_layout
+
+\begin_layout Enumerate
+Connect the Motive hardware license dongle to the Windows PC.
+\end_layout
+
+\begin_layout Enumerate
+More information on setting up the area for the Optitrack system can be
+ found in the Optitrack Documentations
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Useful Docs:
+\begin_inset Newline newline
+\end_inset
+
+https://v20.wiki.optitrack.com/index.php?title=Prepare_Setup_Area
+\begin_inset Newline newline
+\end_inset
+
+https://v20.wiki.optitrack.com/index.php?title=Camera_Placement
+\begin_inset Newline newline
+\end_inset
+
+https://v20.wiki.optitrack.com/index.php?title=Cabling_and_Wiring
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Box Frameless
+position "c"
+hor_pos "c"
+has_inner_box 1
+inner_pos "c"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename images/700px-Wiring_USB.png
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Flex13-OptiHub2-PC Diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Software Setup
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Operating Systems:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+As mentioned one PC should have Windows 7 formatted on it, and another should
+ have Ubuntu 16.04
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Make sure you install all the drivers on the Windows 7 PC.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Optitrack Motive:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Download Optitrack Motive Tracker on the Windows PC from the Optitrack website:
+\begin_inset Newline newline
+\end_inset
+
+http://www.optitrack.com/downloads/
+\end_layout
+
+\begin_layout Enumerate
+Install Optitrack Motive Tracker.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Follow the installation wizard (next all the way through).
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Ask the administrator (Shunmuga Pillay as of the writing of this guide)
+ for the license key file and copy it to:
+\begin_inset Newline newline
+\end_inset
+
+C:
+\backslash
+ProgramData
+\backslash
+OptiTrack
+\backslash
+License
+\end_layout
+
+\begin_layout Enumerate
+You should now be able to open and use Optitrack Motive Tracker.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If you have the cameras connected already then you should see their drivers
+ being installed automatically and afterwards they should appear in Motive.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+ROS:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Follow the ROS tutorials and install ROS Kinetic.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+ROS Tutorials can be found at:
+\begin_inset Newline newline
+\end_inset
+
+http://wiki.ros.org/ROS/Tutorials
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+PuTTY:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+In order to not need to continuously switch between computers using PuTTY
+ to ssh from the Windows machine to the Ubuntu machine is very helpful.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+PuTTY can be downloaded for Windows from:
+\begin_inset Newline newline
+\end_inset
+
+https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Otherwise a hardware KVM can also be very convenient.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Network Setup
+\end_layout
+
+\begin_layout Enumerate
+If using a single drone you want to define your router as a bridge for the
+ drone's wifi router.
+\end_layout
+
+\begin_layout Enumerate
+If using multiple drones you want to define the router as its own wireless
+ and LAN network and connect the drone and PCs to it.
+\end_layout
+
+\begin_layout Enumerate
+Instruction on how to do this with the NetGear Nighthawk can be found in
+ a separate guide.
+\end_layout
+
+\begin_layout Section
+vrpn_client_ros Installation
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\bar under
+IMPORTANT NOTE:
+\end_layout
+
+\begin_layout Standard
+vrpn_client_ros should 
+\series bold
+not
+\series default
+ be confused with ros_vrpn_client! ros_vrpn_client is a different, and older,
+ package intended for ROS Hydro!
+\end_layout
+
+\begin_layout Enumerate
+adsf
+\end_layout
+
+\end_body
+\end_document
