@@ -1,0 +1,5 @@
+#temperary lyx files
+*.lyx~
+
+#lock files
+.~lock*
