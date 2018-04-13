@@ -27,7 +27,17 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
-\use_hyperref false
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
 \use_geometry false
 \use_package amsmath 1
@@ -123,6 +133,60 @@ Pre-Setup
 \end_layout
 
 \begin_layout Subsection
+General
+\end_layout
+
+\begin_layout Standard
+In order for the Optitrack system to function properly you will need to
+ make sure that:
+\end_layout
+
+\begin_layout Enumerate
+You have reduced the amount of infra-red light source coming into your tracking
+ area.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+IR Light sources:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Sunlight
+\end_layout
+
+\begin_layout Enumerate
+IR lights could be emitted from sources such as incandescent, halogen, and
+ high-pressure sodium lights or any other IR based devices.
+ 
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Avoid reflective flooring.
+ The IR lights from the cameras could be reflected by them and interfere
+ with tracking.
+ If this is inevitable, consider covering the floor with surface mats to
+ prevent the reflections.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Avoid flexible or deformable flooring; such flooring can negatively impact
+ your system's calibration.
+\end_layout
+
+\begin_layout Standard
+More detailed information can be found in the Optitrack documentation at:
+\begin_inset Newline newline
+\end_inset
+
+https://v20.wiki.optitrack.com/index.php?title=Prepare_Setup_Area
+\end_layout
+
+\begin_layout Subsection
 Required Hardware and Software
 \end_layout
 
@@ -187,10 +251,6 @@ Useful Docs:
 \begin_inset Newline newline
 \end_inset
 
-https://v20.wiki.optitrack.com/index.php?title=Prepare_Setup_Area
-\begin_inset Newline newline
-\end_inset
-
 https://v20.wiki.optitrack.com/index.php?title=Camera_Placement
 \begin_inset Newline newline
 \end_inset
@@ -200,35 +260,28 @@ https://v20.wiki.optitrack.com/index.php?title=Cabling_and_Wiring
 
 \end_deeper
 \begin_layout Standard
-\begin_inset Box Frameless
-position "c"
-hor_pos "c"
-has_inner_box 1
-inner_pos "c"
-use_parbox 0
-use_makebox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-thickness "0.4pt"
-separation "3pt"
-shadowsize "4pt"
-framecolor "black"
-backgroundcolor "none"
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename images/700px-Wiring_USB.png
 
 \end_inset
 
 
-\end_layout
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 Flex13-OptiHub2-PC Diagram
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -262,7 +315,7 @@ Make sure you install all the drivers on the Windows 7 PC.
 \begin_layout Enumerate
 
 \series bold
-Optitrack Motive:
+Optitrack Motive (on Windows PC):
 \end_layout
 
 \begin_deeper
@@ -314,7 +367,7 @@ If you have the cameras connected already then you should see their drivers
 \begin_layout Enumerate
 
 \series bold
-ROS:
+ROS (on Ubuntu PC):
 \end_layout
 
 \begin_deeper
@@ -336,7 +389,7 @@ http://wiki.ros.org/ROS/Tutorials
 \begin_layout Enumerate
 
 \series bold
-PuTTY:
+PuTTY (on Windows PC):
 \end_layout
 
 \begin_deeper
@@ -380,17 +433,39 @@ Instruction on how to do this with the NetGear Nighthawk can be found in
 \end_layout
 
 \begin_layout Section
-vrpn_client_ros Installation
+Installing and Launching vrpn_client_ros (on Ubuntu Machine)
 \end_layout
 
 \begin_layout Standard
 
 \series bold
 \bar under
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
 IMPORTANT NOTE:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 vrpn_client_ros should 
 \series bold
 not
@@ -399,8 +474,582 @@ not
  package intended for ROS Hydro!
 \end_layout
 
+\begin_layout Plain Layout
+vrpn_client_ros found at: http://wiki.ros.org/vrpn_client_ros
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Short Option (untested)
+\end_layout
+
+\begin_layout Standard
+Installing from Ubuntu repositories directly:
+\begin_inset Newline newline
+\end_inset
+
+(This has been recommended to me after I finished installing the long way
+ - it should work, but I can not vouch for it.)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Run the command:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+sudo apt-get update
+\end_layout
+
+\begin_layout Plain Layout
+
+sudo apt-get install ros-kinetic-vrpn-client-ros
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Long Option (tested)
+\end_layout
+
+\begin_layout Standard
+Install from source:
+\begin_inset Newline newline
+\end_inset
+
+(This option is longer, but is the way I did it, and I can vouch for it.)
+\end_layout
+
 \begin_layout Enumerate
-adsf
+Go to catkin src folder: 
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd ~/catkin_ws/src
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Clone the repository:
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+git clone https://github.com/ros-drivers/vrpn_client_ros.git
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Update Ubuntu repositories before installing dependencies:
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+sudo apt-get update
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Go to cloned Github repository and install dependencies using:
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd <directory of cloned github repository>
+\end_layout
+
+\begin_layout Plain Layout
+
+rosdep install --from-paths .
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Go to catkin home directory (may differ if you made it differently when
+ installing ROS): 
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd ~/catkin_ws
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+make
+\begin_inset Quotes erd
+\end_inset
+
+ catkin:
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+catkin_make
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Source the setup.bash file to get ROS to auto-complete for the vrpn_client_ros
+ package.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+source ~/catkin/devel/setup.bash
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Launching vrpn_client_ros (on Ubuntu PC)
+\end_layout
+
+\begin_layout Enumerate
+Make sure the network is working between the Ubuntu PC and the Windows PC
+ (can be done using 
+\begin_inset Quotes eld
+\end_inset
+
+ping
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Enumerate
+To run vrpn_client_ros run the command:
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+roslaunch vrpn_client_ros sample.launch server:=<ip_of_windows_machine>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Note: You can find the IP on the Windows PC by going to the command line
+ (winkey+R -> type 
+\begin_inset Quotes eld
+\end_inset
+
+cmd
+\begin_inset Quotes erd
+\end_inset
+
+) and entering 
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ipconfig
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+You should see a "connection established" line at the end
+\end_layout
+
+\begin_layout Enumerate
+Check if the node is running with:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rosnode list
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+You should see vrpn_client_ros there
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If you already set up motive with the streaming configurations and you have
+ a rigid body marked in your world you can see if the data is passed to
+ ROS using: 
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rostopic echo /vrpn_client_node/<name_of_rigid_body_in_motive>/pose
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Configuring Motive (on Windows PC)
+\end_layout
+
+\begin_layout Subsection
+Streaming Data
+\end_layout
+
+\begin_layout Standard
+This is mostly based on instructions from http://wiki.ros.org/mocap_optitrack
+ (even though they reference an old version of motive) but I will explain
+ what I did anyways.
+ 
+\end_layout
+
+\begin_layout Enumerate
+In motive go to the streaming pane (icon looks like radio signal)
+\end_layout
+
+\begin_layout Enumerate
+Press on the three dots at the top and "Show Advance"
+\end_layout
+
+\begin_layout Enumerate
+Not sure if this is relevant, but "local interface" is on "loopback"
+\end_layout
+
+\begin_layout Enumerate
+Make sure "Rigid Bodies" is on
+\end_layout
+
+\begin_layout Enumerate
+Set "Transmission Type" to "Multicast"
+\end_layout
+
+\begin_layout Enumerate
+Set "Multicast Interface" to your ROS machines IP address
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+You can get the IP of your Ubuntu PC using the command
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ifconfig
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Set "Broadcast VRPN Data" to on
+\end_layout
+
+\begin_layout Enumerate
+\begin_inset Quotes eld
+\end_inset
+
+VRPN Broadcast Port" should stay 3883
+\end_layout
+
+\begin_layout Subsection
+Calibrate Cameras
+\end_layout
+
+\begin_layout Standard
+Follow instructions in the Optitrack documentation video:
+\begin_inset Newline newline
+\end_inset
+
+https://www.youtube.com/watch?time_continue=92&v=cNZaFEghTBU
+\end_layout
+
+\begin_layout Subsection
+Creating Rigid Body 
+\end_layout
+
+\begin_layout Standard
+I followed the instructions in the Optitrack documentation:
+\begin_inset Newline newline
+\end_inset
+
+https://v20.wiki.optitrack.com/index.php?title=Rigid_Body_Tracking
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+But here is that explanation re-written:
+\end_layout
+
+\begin_layout Enumerate
+Assuming the cameras are connected properly you should see the dots from
+ your markers appear on the screen.
+\end_layout
+
+\begin_layout Enumerate
+Change view to 3D view pane (button at top left of the camera pane) (****
+ insert image of icon ***)
+\end_layout
+
+\begin_layout Enumerate
+Select all associated rigid body markers in the 3D view pane.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Create a Rigid Body asset from the selected markers:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+From Prespective View: While the markers are selected, right-click on the
+ perspective view to access the context menu.
+ Under the Rigid Body section, click Create From Selected Markers.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Once the rigid body is created, the markers will be colored (labeled) and
+ interconnected to each other.
+ The newly created rigid body will be listed under the Assets pane.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If the center point (aka pivot point) of your rigid body is not in the correct
+ location try deleting the rigid body and creating it again.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If this still doesn't work you can try looking at the 
+\begin_inset Quotes eld
+\end_inset
+
+Adjusting Rigid Body Pivot Point
+\begin_inset Quotes erd
+\end_inset
+
+ section in the above link (I haven't needed to try it yet)
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+Change rigid body name:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Go to the 
+\begin_inset Quotes eld
+\end_inset
+
+Assets
+\begin_inset Quotes erd
+\end_inset
+
+ pane (**** insert image of icon *****)
+\end_layout
+
+\begin_layout Enumerate
+Right click on your rigid body and 
+\begin_inset Quotes eld
+\end_inset
+
+Rename
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Set the name to the same name you expect to be using in your future code
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Check That It Is Working (on Ubuntu PC)
+\end_layout
+
+\begin_layout Enumerate
+Run vrpn_client_ros run the command:
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+roslaunch vrpn_client_ros sample.launch server:=<ip_of_windows_machine>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Note: You can find the IP on the Windows PC by going to the command line
+ (winkey+R -> type 
+\begin_inset Quotes eld
+\end_inset
+
+cmd
+\begin_inset Quotes erd
+\end_inset
+
+) and entering 
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ipconfig
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Make sure that Motive Tracker is open in your Windows PC and that the rigid
+ body is defined and streaming data is configured (from section 4)
+\end_layout
+
+\begin_layout Enumerate
+Have a look at the data being streamed to the ROS topic of the rigid body:
+ 
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rostopic echo /vrpn_client_node/<name_of_rigid_body_in_motive>/pose
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If everything is OK you should now see XYZW positions as well as roll pitch
+ yaw (*** add screenshot***)
 \end_layout
 
 \end_body
