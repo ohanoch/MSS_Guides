@@ -1,0 +1,1018 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\rightmargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+NETGEAR Nighthawk (R7000) Router Setup Guide For AR-Drone Use (Single Drone)
+\end_layout
+
+\begin_layout Author
+Made by Or Hanoch for MSS at the University of the Witwatersrand
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+section{Introduction}
+\end_layout
+
+\end_inset
+
+AR-Drones have their own internal routers.
+ In order to send commands to an AR-Drone (eg.
+ via ROS) you will need to connect your computer to the drone's wifi network.
+ In order to connect to multiple drones you will need to have your router
+ create a local LAN distributing its own IP address using DHCP.
+ You will also need to reconfigure each drones network settings to have
+ it connect to the new LAN.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In the robotics room at MSL we use the NetGear Nighthawk (R7000), and thus
+ this setup will guide you through configuring this specific router.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+This guide was mostly taken from:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/AutonomyLab/ardrone_autonomy/wiki/Multiple-AR-Drones"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Note:
+\end_layout
+
+\begin_layout Plain Layout
+There is a separate guide available for configuring your router and drones
+ to use a single drone.
+ This guide will also work for a single drone, but is more complicated.
+ This over-complication is not needed if you only intend to use a single
+ drone.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Pre-Setup
+\end_layout
+
+\begin_layout Enumerate
+Connect the NetGear router to power and an ethernet cable from the PC to
+ one of the numbered ports (not the internet port) on the back of the router.
+\end_layout
+
+\begin_layout Subsection
+Reset NetGear router to factory defaults
+\end_layout
+
+\begin_layout Enumerate
+Take a thin screwdriver or anything else and press the "reset" button on
+ the back of the router, untill the lights turn off except for 2 lights
+ (approx.
+ 7 seconds)
+\end_layout
+
+\begin_layout Enumerate
+Wait for the router to restart itself and the power light appears white.
+\end_layout
+
+\begin_layout Section
+Router Configuration
+\end_layout
+
+\begin_layout Subsection
+Enter router configuration via web browser
+\end_layout
+
+\begin_layout Enumerate
+Open your favorite web browser.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If you opened Google Chrome or Microsoft Edge re-evaluate your life, close
+ the browser, and open a nice, open-source, web browser.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Make sure your proxy settings are off!
+\end_layout
+
+\begin_layout Enumerate
+Go to 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.routerlogin.net/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+After the router finished searching for stuff, choose:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_configure_network_myself.wmf
+	scale 50
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+and:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_next.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Default Username: admin
+\begin_inset Newline newline
+\end_inset
+
+Default Password: password
+\end_layout
+
+\begin_layout Subsection
+Configure Wireless Settings
+\end_layout
+
+\begin_layout Enumerate
+Go to the "ADVANCED" tab:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_advanced.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Click on "Setup":
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_setup.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Go to "Wireless Setup":
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_wireless_setup.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Set "Region" to "Africa (may not be necessary):
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_region_selection.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Under "Wireless Network (2.4GHz b/g/n)" and "Wireless Network (5GHz a/n/ac)"
+ do the following: (5GHz maybe not necessary, but do it their to stay on
+ the safe side):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Change "Name (SSID)" to an SSID of your choice (in this guide we choose
+ "dronenet", remember this because it will be relavent in the future)
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_ssid_dronenet.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+In "Security Options" choose "None":
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_security_options.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Everything else should stay as is, so the final result should look like:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_wireless_dronenet_settings1.wmf
+	scale 50
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_wireless_dronenet_settings2.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Click "Apply" at the top:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_apply_green.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Configure LAN Settings
+\end_layout
+
+\begin_layout Enumerate
+Go to "LAN Setup" on the left:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_lan_setup.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Make sure that the following is set:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+"IP Address" is set to "192.168.1.1"
+\end_layout
+
+\begin_layout Enumerate
+"IP Subnet Mask" is set to "255.255.255.0"
+\end_layout
+
+\begin_layout Enumerate
+"RIP Direction" and "RIP Version" stay as they were.
+\end_layout
+
+\begin_layout Enumerate
+"Use Router as DHCP Server" is ticked and:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+"Starting IP Address" is set to "192.168.1.100"
+\end_layout
+
+\begin_layout Enumerate
+"Ending IP Address" is set to "192.168.1.254"
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+By the end it should look something like this:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_lan_settings.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Click "Apply" at the top:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/netgear_apply_green.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Drone Configuration
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Note:
+\end_layout
+
+\begin_layout Plain Layout
+This section requires you to have a separate computer with wifi.
+\begin_inset Newline newline
+\end_inset
+
+This is due to your router not being configured to bridge the connection.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Changing Drone Settings
+\end_layout
+
+\begin_layout Enumerate
+Connect to your AR-Drone's ad-hoc wifi (directly to the drones wifi router,
+ like you would connect to any wifi connection)
+\end_layout
+
+\begin_layout Enumerate
+Open the terminal and telnet to the drone:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Run:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+telnet 192.168.1.1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+create a file called wifi.sh in /data of the drone:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vi /data/wifi.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Copy the following into the file:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+killall udhcpd
+\end_layout
+
+\begin_layout Plain Layout
+
+ifconfig ath0 down
+\end_layout
+
+\begin_layout Plain Layout
+
+iwconfig ath0 mode managed essid dronenet
+\end_layout
+
+\begin_layout Plain Layout
+
+ifconfig ath0 192.168.1.10 netmask 255.255.255.0 up
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Notice:
+\end_layout
+
+\begin_layout Itemize
+In line 3 change "dronenet" to the SSID you chose when setting up the router.
+\end_layout
+
+\begin_layout Itemize
+The IP in line 4 should be unique to each drone, so change it between different
+ drones.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+If you are not familiar with vi:
+\end_layout
+
+\begin_layout Itemize
+To enter insert mode in vi press "i".
+\end_layout
+
+\begin_layout Itemize
+To save and exit vi press "esc" to exit insert mode and then ":wq")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Make the newly created file executable:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+chmod +x /data/wifi.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Close the telnet connection:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+exit
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Run wifi.sh from PC:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Notice:
+\end_layout
+
+\begin_layout Plain Layout
+While the previouse sections should only be done once, this step should
+ be done whenever you want to make the AR-Drone connect to your wireless
+ (for example every time you turn on the drone)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Connect to your AR-Drone's ad-hoc wifi (directly to the drones wifi router,
+ like you would connect to any wifi connection)
+\end_layout
+
+\begin_layout Enumerate
+Open a terminal
+\end_layout
+
+\begin_layout Enumerate
+Execute the following command to remotly run wifi.sh on the drone:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+echo "./data/wifi.sh" | telnet 192.168.1.1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Your computer should now disconnect from the drones network.
+ This is due to the drone's network configurations being changed.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+On the computer that is connected to the previously configured routers wireless
+ network check that you have connection to the drone using ping:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ping 192.168.1.10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Where the IP address is the same as the one configured in wifi.sh of this
+ drone.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Run the ROS Driver
+\end_layout
+
+\begin_layout Standard
+Congratulations, everything should be working now!
+\begin_inset Newline newline
+\end_inset
+
+When connecting to the drone using ROS you will need to make sure to supply
+ the correct drone IP to ardrone_autonomy.
+ This can be done by:
+\end_layout
+
+\begin_layout Enumerate
+If running ardrone_autonomy directly in the command line use:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rosrun ardrone_autonomy ardrone_driver -ip 192.168.1.10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If using a launch file add/change in the node line the argument:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+args="-ip 192.168.1.10"
+\end_layout
+
+\end_inset
+
+ Thus you will end up with something like:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<node name="ardrone_driver" pkg="ardrone_autonomy"
+\end_layout
+
+\begin_layout Plain Layout
+
+type="ardrone_driver" args="-ip 192.168.1.10" />
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Notice:
+\end_layout
+
+\begin_layout Itemize
+The IP address in the above examples should be the same as the one configured
+ in the wifi.sh file of this drone.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Make sure to give the different nodes for different drones different names,
+ i.e:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<node name="ardrone_driver1" pkg="ardrone_autonomy"
+\end_layout
+
+\begin_layout Plain Layout
+
+type="ardrone_driver" args="-ip 192.168.1.10" />
+\end_layout
+
+\end_inset
+
+ and
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<node name="ardrone_driver2" pkg="ardrone_autonomy"
+\end_layout
+
+\begin_layout Plain Layout
+
+type="ardrone_driver" args="-ip 192.168.1.12" />
+\end_layout
+
+\end_inset
+
+ If using two drones, one with the ip 192.168.1.10 called 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone_driver1
+\begin_inset Quotes erd
+\end_inset
+
+ and the other with ip 192.168.1.12 called 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone_driver2
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Program to your hearts content!
+\end_layout
+
+\end_body
+\end_document

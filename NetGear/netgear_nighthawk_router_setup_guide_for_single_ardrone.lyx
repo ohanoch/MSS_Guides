@@ -1,0 +1,494 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\rightmargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+NETGEAR Nighthawk (R7000) Router Setup Guide For AR-Drone Use (Single Drone)
+\end_layout
+
+\begin_layout Author
+Made by Or Hanoch for MSS at the University of the Witwatersrand
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+section{Introduction}
+\end_layout
+
+\end_inset
+
+AR-Drones have their own internal routers.
+ In order to send commands to an AR-Drone (eg.
+ via ROS) you will need to connect your computer to the drone's wifi network.
+ If your comupter does not have a wireless card installed you can use and
+ external wirless router to connect to the drone's wireless network by making
+ the router "Bridge" the connection.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+In the robotics room at MSL we use the NetGear Nighthawk (R7000), and thus
+ this setup will guide you through configuring this specific router.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+This guide was mostly taken from:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://kb.netgear.com/24105/What-is-bridge-mode-and-how-do-I-set-it-up-on-my-Nighthawk-router"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Note:
+\end_layout
+
+\begin_layout Plain Layout
+There is a separate guide available for configuring your router and drones
+ to use multiple drones.
+ That guide will also work for a single drone, but is more complicated.
+ This over-complication is not needed if you only intend to use a single
+ drone.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Pre-Setup
+\end_layout
+
+\begin_layout Enumerate
+Connect the NetGear router to power and an ethernet cable from the PC to
+ one of the numbered ports (not the internet port) on the back of the router.
+\end_layout
+
+\begin_layout Subsection
+Reset NetGear router to factory defaults
+\end_layout
+
+\begin_layout Enumerate
+Take a thin screwdriver or anything else and press the "reset" button on
+ the back of the router, untill the lights turn off except for 2 lights
+ (approx.
+ 7 seconds)
+\end_layout
+
+\begin_layout Enumerate
+Wait for the router to restart itself and the power light appears white.
+\end_layout
+
+\begin_layout Section
+Router Configuration
+\end_layout
+
+\begin_layout Subsection
+Enter router configuration via web browser
+\end_layout
+
+\begin_layout Enumerate
+Open your favorite web browser.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If you opened Google Chrome or Microsoft Edge re-evaluate your life, close
+ the browser, and open a nice, open-source, web browser.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Make sure your proxy settings are off!
+\end_layout
+
+\begin_layout Enumerate
+Go to 
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.routerlogin.net/"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+After the router finished searching for stuff, choose:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_configure_network_myself.wmf
+	scale 50
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+and:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_next.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Default Username: admin
+\begin_inset Newline newline
+\end_inset
+
+Default Password: password
+\end_layout
+
+\begin_layout Subsection
+Configure Bridge Settings
+\end_layout
+
+\begin_layout Enumerate
+Go to the "ADVANCED" tab:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_advanced.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Click on "Advanced Setup":
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_advance_setup.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Go to "Router/AP/Bridge/Repeating Mode":
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_bridge_mode.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Choose "Bridge Mode":
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_bridge_mode_icon.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Click "setup bridge mode wireless settings":
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_setup_bridge_mode_wireless.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Leave "Choose a Wireless Networks" as "Wireless Networks (2.4Ghz b/g/n)"
+\end_layout
+
+\begin_layout Enumerate
+Change "Name (SSID)" to the drone's wireless network name.
+ (To check this you can check which wifi networks your phone can find.
+ Ofcourse the drone needs to be on for this to work.)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+An AR-Drone2's SSID is of the form 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone2_######
+\begin_inset Quotes erd
+\end_inset
+
+, i.e.
+ "ardrone2_302429"
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Change "Security Options" is to "None"
+\end_layout
+
+\begin_layout Enumerate
+Click "Apply"
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_bridge_settings.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Click "Apply" on the original window:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_apply_purple.wmf
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Congratulations!
+\end_layout
+
+\begin_layout Standard
+Everything should be working now! To check:
+\end_layout
+
+\begin_layout Enumerate
+Turn on drone:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Connect battery to drone, leave it on the ground, and wait for it to calibrate
+ and all lights to turn green
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Your computer should now connect to the drone's wifi and your drone should
+ be able to get commands from ROS.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+If you run into problems try restarting the network.
+ On Ubuntu run from terminal:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+sudo service network-manager restart
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Program to your hearts content!
+\end_layout
+
+\end_body
+\end_document
