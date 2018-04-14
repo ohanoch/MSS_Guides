@@ -1,0 +1,89 @@
+Basic Tutorial For Running Jobs On Cluster
+------------------------------------------
+
+This is a tutorial explaining how to connect to the MSS cluster and run a job. At the end of this file you will find a list of usefull linux commands for the cluster, It might be useful to have a look at them prior to reading this tutorial as it will make it easier to understand.
+
+Conntect to cluster:
+--------------------
+Enter commands in terminal:
+ssh <user_name>@10.100.7.2
+Where <user_name> is the username provided to you by mss.
+You will be prompted for a password, supply the one provided to you by mss.
+Note - if you are connecting from outside the wits network you will need to connect first to an intermidiate server:
+ssh <user_name>@146.141.21.100
+
+For first time users or people who haven't used the cluster in a while:
+-----------------------------------------------------------------------
+Some configurations are needed to be done - don't worry, we have scripts doing the heavy lifting, just follow instructions in system-prep/README.txt.
+You can view instructions using "vim":
+`vim ~/system-prep/README.txt`
+(type :q to exit vim)
+
+Copy file to cluster:
+---------------------
+If you have a file you would like to copy from your local machine to the cluster
+:
+Windows - use winSCP (explanation separate)
+Linux - `rcp /path/to/local/file <user_name>@10.100.7.2:/path/to/save/on/cluster
+Mac - `scp /path/to/local/file <user_name>@10.100.7.2:/path/to/save/on/cluster`
+example:
+rcp ~/Documents/myCodeFile exampleUser@10.100.7.2:~/myFiles/myCodeFile
+
+Note - If you are accessing the cluster via the intermidiary server mentioned in the previouse section you will also need to preform the copying through it - thus copy to 146.141.21.100, login to 146.141.21.100, and copy from 136.131.21.100 to 10.10.7.2 from 146.141.21.100
+
+Preparing a pbs job file:
+-------------------------
+Template pbs files are available in ~/system-prep/examples
+You can copy a template file to a directory of your choice using the cp command as follows (example for copying c pbs file to the directory ~/my_files):
+cp system-prep/examples/07-simple-c/code/sieve.pbs 
+
+Edit the template to file using `vim <file_name>`. Note - see end of file for commands to use in vim.
+Inside vim:
+- Change the names of the files according to what is needed (in the c example change "sieve" to the name of the file you are using).
+- make sure you have the line `cd $PBS_O_WORKDIR` at the begining. 
+- Change/add `#PBS -N <job_name>`
+- Change/add `#PBS -e /path/to/save/error/file`
+- Change/add `#PBS -o /path/to/save/output/file`
+- Change/add `#PBS -l nodes=1:ppn=1,walltime=00:00:10` where "nodes" is the amount of computers to run on, "ppn" is the amount of processors per node (up to 3) to be used and "walltime" is maximum time for job to run.
+
+
+Run the job:
+------------
+To run the job go to the directory with the pbs and the code file (it is best to keep them together) enter the command:
+qsub <name_of_pbs_file>.pbs
+
+Check status of job being run:
+------------------------------
+To check the status of the jobs you have running enter the command:
+qstat
+
+Under the "S" column the letters have the following meaning:
+Q - Queued - Job is waiting for resources to be allocated to it
+R - Running - Job currently running on the cluster
+E - Exiting - Job is exiting after having run
+C - Complete - Job finished running completly
+
+After job completed:
+--------------------
+You can see the output of the job and if there were errors in the output files that were created for you. Use `vim output_file` and `vim error_file` to view them. If all went well your error file should be empty.
+
+Usefull linux commands when inside cluster:
+-------------------------------------------
+Note- `~` represents your home directory. Thus ~/my_files is the same as /home-108/<user_name>/my_files
+cd - change directory eg:
+`cd system-prep` - change directory to system-prep directory (inside my current directpry
+`cd -` - change to previouse directory
+`cd ~` - change to home directory
+
+ls - list files and folders inside current directory
+vim <file_name> - open file in the vim text editor
+cp /path/to/source/file /path/for/destination/file - copy a file
+mv /path/to/source/file /path/for/destination/file - move a file
+
+Basic vim commands:
+-------------
+:q - exit
+:q! - exit without saving changes
+:qw - exit with saving changes
+"a" - enter insert mode
+esc - exit insert mode
