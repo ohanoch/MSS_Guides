@@ -1,0 +1,55 @@
+#!/bin/sh
+#Don't treat this as a bash script! It is configured as one for the pretty colors in vim.
+
+# NOTICE!
+# Some parts of this guide have not been conformed to be working and may have bugs!
+# That being said the creation of torrents and the use of transmission and qbittorrent have been tested and work.
+
+#create torrent - this may take a long time for large torrents
+#if torrent is saved in user home folder it saves the need to copy it over to all nodes
+transmission-create /path/to/file/or/directory/to/be/torrented -o /path/to/output/directory/output_file_name.torrent
+
+#get IP addresses of active nodes
+pbsnodes | grep host1 |grep -v jobs | nslookup | grep Address | grep -v 127 | sed s/"Address: "//
+
+#turn on qbittorent-nox with the torrent file on all nodes you want it
+
+pdsh -R ssh -w ^/<path_to_home_directory>/system-prep/scripts/nodes.csv "qbittorrent-nox /path/to/torrent/file/name_of_file.torrent &"
+
+#accessing qbittorent webUI
+In a web browser on any computer in the Wits network got to:
+http://<computerIP>:8080
+
+#setup qbittorent settings - only needs to be done once when doing your first torrent.
+#All nodes settings are the same - changing all will change them all
+#Username: admin Password: adminadmin
+In one of the nodes webUI got to the Tools -> Options
+
+In "Downloads" change "Save files to location" to the location of the data in the node that is going to be seeding #otherwise that node wont know it has the files specified in the torrent and wont seed them.
+
+In "Speed" tab uncheck "Enable bandwidth management (uTP)"	#
+               uncheck "Apply rate limit to uTP connections"	#This is to avoid issues with the torrents sometimes starting as 
+								#queued and requiring a "force resume"
+In "BitTorrent" tab uncheck "Torrent Queueing"			#This doesn't appear to have fixed the problem 100% though
+
+#check if files finished downloading - THIS IS NOT CONFORMED TO BE WORKING!!!! Yu 
+originalMem="`du -s /directory/of/torrent/output/files | cut -f1`"
+count=0
+for node in $(pbsnodes | grep host1 |grep -v jobs | nslookup | grep Address | grep -v 127 | sed s/"Address: "//) # for loop on all nodes
+do
+	clientMem=$(ssh $node 'du -s /directory/of/torrent/output/files | cut -f1')
+
+	if ["$originalMem" -ne "$clientMem"]; then
+		echo "$node has $clientMem of $originalMem downloaded"
+		count=$((count+1))
+	fi
+done
+if ["$count" -gt "0"]; then
+	echo "waiting for $count nodes to finish downloading"
+else
+	echo "finished downloading on all nodes"
+fi
+
+
+#shut down qbittorrent after all downloads completed
+pdsh -R ssh -w ^/<path_to_home_directory>/system-prep/scripts/nodes.csv "killall qbittorrent-nox"
