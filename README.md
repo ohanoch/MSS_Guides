@@ -5,7 +5,7 @@ Though the entended use of these guides is intended for the universities communi
 
 ## Drone tags guide
 There is a guide for controlling AR-Drones using tags on a wall. This is a larger project than just a simple guide and can be found with all the explanations here:  
-https://github.com/ohanoch/MSS_drone_project
+https://github.com/ohanoch/MSS_drone_tag_project
 
 ## Issues
 Please raise any problems/errors with these guides in the Issues area. These guides were tested as of writing, but may contain errors due to changes in dependencies or environment.
