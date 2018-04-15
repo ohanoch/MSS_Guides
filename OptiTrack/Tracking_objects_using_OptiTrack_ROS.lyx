@@ -39,7 +39,7 @@
 \pdf_backref false
 \pdf_pdfusetitle true
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_package amsmath 1
 \use_package amssymb 1
 \use_package cancel 1
@@ -63,6 +63,8 @@
 \shortcut idx
 \color #008000
 \end_index
+\leftmargin 2cm
+\rightmargin 2cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -85,7 +87,23 @@ Tracking objects using OptiTrack system and ROS
 \end_layout
 
 \begin_layout Author
-Made by Or Hanoch for the MSS at the University of the Witwatersrand
+Made by Or Hanoch for MSS at the University of the Witwatersrand
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -106,26 +124,21 @@ setcounter{section}{-1}
 section{Introduction}
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
 
 This guide is intended to help someone new to Optitrack to get started with
  initial setup, tracking objects using Optitrack Motive software, and transferin
 g tracking data to a Linux machine running ROS.
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-This guide was tested using Windows 7 with Optitrack Motive and Ubuntu 16.04
- with ROS Kinetic, using a NetGear Nighthawk router to connect the two.
-\end_layout
-
+\begin_inset Newline newline
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+This guide was tested using Windows 7 with Optitrack Motive Tracker 2.0.1
+ and Ubuntu 16.04 with ROS Kinetic, using a NetGear Nighthawk router to connect
+ the two.
 \end_layout
 
 \begin_layout Section
@@ -183,7 +196,14 @@ More detailed information can be found in the Optitrack documentation at:
 \begin_inset Newline newline
 \end_inset
 
-https://v20.wiki.optitrack.com/index.php?title=Prepare_Setup_Area
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://v20.wiki.optitrack.com/index.php?title=Prepare_Setup_Area"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -251,11 +271,25 @@ Useful Docs:
 \begin_inset Newline newline
 \end_inset
 
-https://v20.wiki.optitrack.com/index.php?title=Camera_Placement
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://v20.wiki.optitrack.com/index.php?title=Camera_Placement"
+
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
-https://v20.wiki.optitrack.com/index.php?title=Cabling_and_Wiring
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://v20.wiki.optitrack.com/index.php?title=Cabling_and_Wiring"
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -324,7 +358,14 @@ Download Optitrack Motive Tracker on the Windows PC from the Optitrack website:
 \begin_inset Newline newline
 \end_inset
 
-http://www.optitrack.com/downloads/
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://www.optitrack.com/downloads/"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -381,7 +422,14 @@ ROS Tutorials can be found at:
 \begin_inset Newline newline
 \end_inset
 
-http://wiki.ros.org/ROS/Tutorials
+
+\begin_inset CommandInset href
+LatexCommand href
+target "http://wiki.ros.org/ROS/Tutorials"
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -404,7 +452,14 @@ PuTTY can be downloaded for Windows from:
 \begin_inset Newline newline
 \end_inset
 
-https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html"
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -802,11 +857,32 @@ This is mostly based on instructions from http://wiki.ros.org/mocap_optitrack
 \end_layout
 
 \begin_layout Enumerate
-In motive go to the streaming pane (icon looks like radio signal)
+In motive go to the streaming pane (using the button 
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_stream_button.png
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Enumerate
-Press on the three dots at the top and "Show Advance"
+Press on the three dots at the top and "Show Advance
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_streaming_show_advanced.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -855,16 +931,151 @@ Set "Broadcast VRPN Data" to on
 VRPN Broadcast Port" should stay 3883
 \end_layout
 
+\begin_layout Standard
+Final Streaming data pane should look similar to:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_streaming_final.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Calibrate Cameras
 \end_layout
 
 \begin_layout Standard
-Follow instructions in the Optitrack documentation video:
+Visual example of calibration is needed to understand how to calibrate the
+ cameras properly.
+ The instructions and example in the Optitrack documentation video will
+ be better than anything I can explain here:
 \begin_inset Newline newline
 \end_inset
 
-https://www.youtube.com/watch?time_continue=92&v=cNZaFEghTBU
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://www.youtube.com/watch?time_continue=92&v=cNZaFEghTBU"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+That being said, in a nutshell:
+\end_layout
+
+\begin_layout Enumerate
+Take all infra-red reflective markers out of your tracking area
+\end_layout
+
+\begin_layout Enumerate
+Go to the calibration pane (using the button 
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_calibration_icon.png
+
+\end_inset
+
+) 
+\end_layout
+
+\begin_layout Enumerate
+In the camera preview pane mark all of the infrared reflections using the
+ buttons at the top:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_calibration_mark_IR.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+In the calibration pane, under the 
+\begin_inset Quotes eld
+\end_inset
+
+Wanding
+\begin_inset Quotes erd
+\end_inset
+
+ section, click 
+\begin_inset Quotes eld
+\end_inset
+
+Start Wanding
+\begin_inset Quotes erd
+\end_inset
+
+:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_calibration_start_wanding.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Using your Opti-wand walk in a grid like manner while moving the wand in
+ circles (see example in aforementioned video)
+\end_layout
+
+\begin_layout Enumerate
+When you finished wanding and the camera preview seems full enough click
+ 
+\begin_inset Quotes eld
+\end_inset
+
+Calculate
+\begin_inset Quotes erd
+\end_inset
+
+ in the calibration pane under the 
+\begin_inset Quotes eld
+\end_inset
+
+Calibration
+\begin_inset Quotes erd
+\end_inset
+
+ section:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_calibration_calculate.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If all went well it should tell you that the result is exceptional.
 \end_layout
 
 \begin_layout Subsection
@@ -876,7 +1087,14 @@ I followed the instructions in the Optitrack documentation:
 \begin_inset Newline newline
 \end_inset
 
-https://v20.wiki.optitrack.com/index.php?title=Rigid_Body_Tracking
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://v20.wiki.optitrack.com/index.php?title=Rigid_Body_Tracking"
+
+\end_inset
+
+
 \begin_inset Newline newline
 \end_inset
 
@@ -893,8 +1111,34 @@ Assuming the cameras are connected properly you should see the dots from
 \end_layout
 
 \begin_layout Enumerate
-Change view to 3D view pane (button at top left of the camera pane) (****
- insert image of icon ***)
+Change view to 3D perspective view pane if you are only in camera preview
+ by pressing:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_3d_camera_view_icon.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+3D perspective view looks like this:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_3d_camera_view.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
@@ -908,7 +1152,7 @@ Create a Rigid Body asset from the selected markers:
 
 \begin_deeper
 \begin_layout Enumerate
-From Prespective View: While the markers are selected, right-click on the
+From Perspective View: While the markers are selected, right-click on the
  perspective view to access the context menu.
  Under the Rigid Body section, click Create From Selected Markers.
 \end_layout
@@ -955,7 +1199,13 @@ Assets
 \begin_inset Quotes erd
 \end_inset
 
- pane (**** insert image of icon *****)
+ pane (using the button 
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_assets_icon.png
+
+\end_inset
+
+) 
 \end_layout
 
 \begin_layout Enumerate
@@ -1047,10 +1297,12 @@ rostopic echo /vrpn_client_node/<name_of_rigid_body_in_motive>/pose
 
 \end_layout
 
+\begin_deeper
 \begin_layout Enumerate
 If everything is OK you should now see XYZW positions as well as roll pitch
  yaw (*** add screenshot***)
 \end_layout
 
+\end_deeper
 \end_body
 \end_document
