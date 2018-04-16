@@ -760,6 +760,19 @@ roslaunch vrpn_client_ros sample.launch server:=<ip_of_windows_machine>
 
 \end_inset
 
+i.e.
+ for windows machine IP 192.168.1.102
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+roslaunch vrpn_client_ros sample.launch server:=192.168.1.102
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
@@ -834,6 +847,27 @@ status open
 \begin_layout Plain Layout
 
 rostopic echo /vrpn_client_node/<name_of_rigid_body_in_motive>/pose
+\end_layout
+
+\end_inset
+
+i.e.
+ for rigid body named 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone1
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rostopic echo /vrpn_client_node/ardrone1/pose
 \end_layout
 
 \end_inset
@@ -1075,9 +1109,47 @@ Calibration
 \end_layout
 
 \begin_layout Enumerate
-If all went well it should tell you that the result is exceptional.
+If all went well the pop-up window should tell you that the result is 
+\begin_inset Quotes eld
+\end_inset
+
+Exceptional
+\begin_inset Quotes erd
+\end_inset
+
+ - press Apply.
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+If for some reason you got a 
+\begin_inset Quotes eld
+\end_inset
+
+Poor
+\begin_inset Quotes erd
+\end_inset
+
+ result, or anything else thats not 
+\begin_inset Quotes eld
+\end_inset
+
+Exceptional
+\begin_inset Quotes erd
+\end_inset
+
+ try calibrating again until you get an 
+\begin_inset Quotes eld
+\end_inset
+
+Exceptional
+\begin_inset Quotes erd
+\end_inset
+
+ result.
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Creating Rigid Body 
 \end_layout
@@ -1142,10 +1214,38 @@ Change view to 3D perspective view pane if you are only in camera preview
 \end_layout
 
 \begin_layout Enumerate
-Select all associated rigid body markers in the 3D view pane.
+Select all associated rigid body markers in the 3D view pane by clicking
+ and dragging around them.
  
 \end_layout
 
+\begin_deeper
+\begin_layout Enumerate
+These points are sometimes hard to see in 3D perspective view.
+ Drag and make a large area, you will see many 
+\begin_inset Quotes eld
+\end_inset
+
+rays
+\begin_inset Quotes erd
+\end_inset
+
+ from the camera go to a point - your rigid body should be there, zoom in
+ to see it.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_camera_rays.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Enumerate
 Create a Rigid Body asset from the selected markers:
 \end_layout
@@ -1155,6 +1255,17 @@ Create a Rigid Body asset from the selected markers:
 From Perspective View: While the markers are selected, right-click on the
  perspective view to access the context menu.
  Under the Rigid Body section, click Create From Selected Markers.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_create_rigid_body.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
@@ -1162,6 +1273,17 @@ From Perspective View: While the markers are selected, right-click on the
 Once the rigid body is created, the markers will be colored (labeled) and
  interconnected to each other.
  The newly created rigid body will be listed under the Assets pane.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_rigid_body_ready.PNG
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_deeper
@@ -1218,10 +1340,21 @@ Rename
 \end_inset
 
 
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/motive_assets_rename.png
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Enumerate
-Set the name to the same name you expect to be using in your future code
+Set the name to the same name you expect to be using in your future code/ROS
 \end_layout
 
 \end_deeper
@@ -1294,15 +1427,70 @@ rostopic echo /vrpn_client_node/<name_of_rigid_body_in_motive>/pose
 
 \end_inset
 
+i.e.
+ for rigid body named 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone1
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rostopic echo /vrpn_client_node/ardrone1/pose
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-If everything is OK you should now see XYZW positions as well as roll pitch
- yaw (*** add screenshot***)
+If everything is OK you should now see XYZ positions as well as XYZW orientation
+:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename images/motive_screenshots/vrpn_client_ros_topic_output.PNG
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
+\begin_layout Section
+Congratulations
+\end_layout
+
+\begin_layout Standard
+For multiple drones just make multiple rigid bodies with different names,
+ and ROS will create a different topic for each drone according to the rigid
+ body name, and receive data for it through that topic
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+You are now ready to work with ROS obtaining tracking data from Optitrack
+ Motive Tracker!
+\begin_inset Newline newline
+\end_inset
+
+Program to your hearts content!
+\end_layout
+
 \end_body
 \end_document
