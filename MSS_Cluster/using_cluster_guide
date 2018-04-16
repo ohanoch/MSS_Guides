@@ -29,7 +29,7 @@ Mac - `scp /path/to/local/file <user_name>@10.100.7.2:/path/to/save/on/cluster`
 example:
 rcp ~/Documents/myCodeFile exampleUser@10.100.7.2:~/myFiles/myCodeFile
 
-Note - If you are accessing the cluster via the intermidiary server mentioned in the previouse section you will also need to preform the copying through it - thus copy to 146.141.21.100, login to 146.141.21.100, and copy from 136.131.21.100 to 10.10.7.2 from 146.141.21.100
+Note - If you are accessing the cluster via the intermidiary server mentioned in the previouse section you will also need to preform the copying through it - thus copy to 146.141.21.100, login to 146.141.21.100, and copy from 146.141.21.100 to 10.10.7.2
 
 Preparing a pbs job file:
 -------------------------
@@ -37,7 +37,7 @@ Template pbs files are available in ~/system-prep/examples
 You can copy a template file to a directory of your choice using the cp command as follows (example for copying c pbs file to the directory ~/my_files):
 cp system-prep/examples/07-simple-c/code/sieve.pbs 
 
-Edit the template to file using `vim <file_name>`. Note - see end of file for commands to use in vim.
+Edit the template file using `vim <file_name>`. Note - see end of file for commands to use in vim.
 Inside vim:
 - Change the names of the files according to what is needed (in the c example change "sieve" to the name of the file you are using).
 - make sure you have the line `cd $PBS_O_WORKDIR` at the begining. 
@@ -71,8 +71,8 @@ Usefull linux commands when inside cluster:
 -------------------------------------------
 Note- `~` represents your home directory. Thus ~/my_files is the same as /home-108/<user_name>/my_files
 cd - change directory eg:
-`cd system-prep` - change directory to system-prep directory (inside my current directpry
-`cd -` - change to previouse directory
+`cd system-prep` - change directory to system-prep directory (inside my current directory)
+`cd -` - change to previous directory
 `cd ~` - change to home directory
 
 ls - list files and folders inside current directory

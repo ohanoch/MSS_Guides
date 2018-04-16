@@ -1,0 +1,1160 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\rightmargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+MSS Cluster - Basic Guide
+\end_layout
+
+\begin_layout Author
+Made by Or Hanoch for MSS at the University of the Witwatersrand
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+section{Introduction}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a tutorial explaining how to connect to the MSS cluster and run
+ a job.
+ At the end of this file you will find a list of usefull linux commands
+ for the cluster, It might be useful to have a look at them prior to reading
+ this tutorial as it will make it easier to understand.
+\end_layout
+
+\begin_layout Section
+Connect To Cluster
+\end_layout
+
+\begin_layout Enumerate
+Enter the following command in terminal:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ssh <user_name>@10.100.7.2
+\end_layout
+
+\end_inset
+
+Where <user_name> is the username provided to you by mss.
+\begin_inset Newline newline
+\end_inset
+
+i.e.
+ for username 
+\begin_inset Quotes eld
+\end_inset
+
+tstark
+\begin_inset Quotes erd
+\end_inset
+
+ enter:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ssh tstark@10.100.7.2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+You might be prompted with message that loks similar to (except the ip will
+ be 10.100.7.2):
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/MSS_Cluster/images/ssh_authenticity_screenshot.png
+	scale 25
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+Enter 
+\begin_inset Quotes eld
+\end_inset
+
+yes
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+You will be prompted for a password, supply the one provided to you by mss.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Note - if you are connecting from outside the wits network you will need
+ to connect first to an intermediary server using: 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ssh <user_name>@146.141.21.100
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Then after connecting into that server you will need to connect to the cluster
+ server using:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ssh <user_name>@10.100.7.2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Initial Configurations
+\end_layout
+
+\begin_layout Standard
+For first time users or people who haven't used the cluster in a while some
+ configurations need to be done.
+ Don't worry, we have scripts doing the heavy lifting, just follow instructions
+ in system-prep/README.txt.
+\end_layout
+
+\begin_layout Enumerate
+You can view instructions using "vim": 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vim ~/system-prep/README.txt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+To exit vim press 
+\begin_inset Quotes eld
+\end_inset
+
+Esc
+\begin_inset Quotes erd
+\end_inset
+
+ and enter 
+\begin_inset Quotes eld
+\end_inset
+
+:q
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Copy file to cluster:
+\end_layout
+
+\begin_layout Standard
+If you have a file you would like to copy from your local machine to the
+ cluster:
+\end_layout
+
+\begin_layout Subsection
+Windows
+\end_layout
+
+\begin_layout Standard
+Install Linux and use Linux instructions.
+\begin_inset Newline newline
+\end_inset
+
+Otherwise use winSCP (explanation separate)
+\end_layout
+
+\begin_layout Subsection
+Mac
+\end_layout
+
+\begin_layout Standard
+Install Linux and use Linux instructions.
+\begin_inset Newline newline
+\end_inset
+
+Otherwise:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+scp /path/to/local/file <user_name>@10.100.7.2:/path/to/save/on/cluster
+\end_layout
+
+\end_inset
+
+i.e.
+ if I wanted to copy 
+\begin_inset Quotes eld
+\end_inset
+
+/home/tstark/jarvis.cpp
+\begin_inset Quotes erd
+\end_inset
+
+ to the cluster in 
+\begin_inset Quotes eld
+\end_inset
+
+~/top_secret/really_this_is_secret
+\begin_inset Quotes erd
+\end_inset
+
+ I would enter the command:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+scp /home/tstark/jarvis.cpp <user_name>@10.100.7.2:~/top_secret/really_this_is_secre
+t
+\end_layout
+
+\end_inset
+
+To copy from server to personal PC either run the above command from within
+ the server (notice <user_name> becomes your personal username on your personal
+ computer)
+\begin_inset Newline newline
+\end_inset
+
+or
+\begin_inset Newline newline
+\end_inset
+
+from your personal computer switch the first part and second part of the
+ command: 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+scp <user_name>@10.100.7.2:/path/to/save/on/cluster/file /path/to/local/
+\end_layout
+
+\end_inset
+
+i.e.
+ for the example above but copying 
+\begin_inset Quotes eld
+\end_inset
+
+jarvis.cpp
+\begin_inset Quotes erd
+\end_inset
+
+ from server to personal computer:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+scp <user_name>@10.100.7.2:~/top_secret/really_this_is_secret/jarvis.cpp /home/tstar
+k/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Linux
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rcp /path/to/local/file <user_name>@10.100.7.2:/path/to/save/on/cluster
+\end_layout
+
+\end_inset
+
+i.e.
+ if I wanted to copy 
+\begin_inset Quotes eld
+\end_inset
+
+/home/tstark/jarvis.cpp
+\begin_inset Quotes erd
+\end_inset
+
+ to the cluster in 
+\begin_inset Quotes eld
+\end_inset
+
+~/top_secret/really_this_is_secret
+\begin_inset Quotes erd
+\end_inset
+
+ I would enter the command:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rcp /home/tstark/jarvis.cpp <user_name>@10.100.7.2:~/top_secret/really_this_is_secre
+t
+\end_layout
+
+\end_inset
+
+To copy from server to personal PC either run the above command from within
+ the server (notice <user_name> becomes your personal username on your personal
+ computer)
+\begin_inset Newline newline
+\end_inset
+
+or
+\begin_inset Newline newline
+\end_inset
+
+from your personal computer switch the first part and second part of the
+ command: 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rcp <user_name>@10.100.7.2:/path/to/save/on/cluster/file /path/to/local/
+\end_layout
+
+\end_inset
+
+i.e.
+ for the example above but copying 
+\begin_inset Quotes eld
+\end_inset
+
+jarvis.cpp
+\begin_inset Quotes erd
+\end_inset
+
+ from server to personal computer:
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rcp <user_name>@10.100.7.2:~/top_secret/really_this_is_secret/jarvis.cpp /home/tstar
+k/
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+Note - If you are accessing the cluster via the intermediary server mentioned
+ in the previous section you will also need to preform the copying through
+ it - thus copy to 146.141.21.100, login to 146.141.21.100, and copy from 146.141.21.100
+ to 10.10.7.2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Preparing And Running A PBS Job File
+\end_layout
+
+\begin_layout Subsection
+Template PBS files
+\end_layout
+
+\begin_layout Standard
+Template pbs files are available in ~/system-prep/examples
+\end_layout
+
+\begin_layout Enumerate
+You can copy a template file to a directory of your choice using the cp
+ command as follows.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Example for copying c pbs file to the directory ~/my_files
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cp system-prep/examples/07-simple-c/code/sieve.pbs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+You can rename the file after you copied it using the mv command:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+example of renaming 
+\begin_inset Quotes eld
+\end_inset
+
+sieve.pbs
+\begin_inset Quotes erd
+\end_inset
+
+ to 
+\begin_inset Quotes eld
+\end_inset
+
+jarvis.pbs
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mv sieve.pbs jarvis.pbs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Editing PBS File
+\end_layout
+
+\begin_layout Enumerate
+Edit the template file using:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vim <file_name>
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Note:
+\end_layout
+
+\begin_layout Plain Layout
+see end of file for commands to use in vim.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Change the names of the files according to what is needed
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+In the c example change "sieve" to the name of the file you are using.
+\end_layout
+
+\begin_layout Enumerate
+make sure you have the line `cd $PBS_O_WORKDIR` at the beginning.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Change/add
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#PBS -N <job_name>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Change/add
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#PBS -e /path/to/save/error/file
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Change/add
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#PBS -o /path/to/save/output/file
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Change/add
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#PBS -l nodes=1:ppn=1,walltime=00:00:10
+\end_layout
+
+\end_inset
+
+ where "nodes" is the amount of computers to run on, "ppn" is the amount
+ of processors per node (up to 3) to be used and "walltime" is maximum time
+ for the job to run.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Run the job:
+\end_layout
+
+\begin_layout Standard
+To run the job go to the directory with the pbs and the code file (it is
+ best to keep them together) enter the command:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+qsub <name_of_pbs_file>.pbs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Check Status Of Job Being Run
+\end_layout
+
+\begin_layout Standard
+To check the status of the jobs you have running enter the command:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+qstat
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Under the "S" column the letters have the following meaning:
+\end_layout
+
+\begin_layout Itemize
+Q - Queued - Job is waiting for resources to be allocated to it
+\end_layout
+
+\begin_layout Itemize
+R - Running - Job currently running on the cluster
+\end_layout
+
+\begin_layout Itemize
+E - Exiting - Job is exiting after having run
+\end_layout
+
+\begin_layout Itemize
+C - Complete - Job finished running completely
+\end_layout
+
+\begin_layout Subsection
+After Job Completed
+\end_layout
+
+\begin_layout Standard
+You can see the output of the job and if there were errors in the output
+ files that were created for you.
+ To view them use 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vim output_file
+\end_layout
+
+\end_inset
+
+and 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vim error_file
+\end_layout
+
+\end_inset
+
+If all went well your error file should be empty.
+\end_layout
+
+\begin_layout Section
+Useful Linux Commands When Inside Cluster
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Note
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+~
+\end_layout
+
+\end_inset
+
+ represents your home directory.
+ Thus 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+~/my_files
+\end_layout
+
+\end_inset
+
+ is the same as 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+/home-108/<user_name>/my_files
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+cd - change directory.
+ Examples:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd system-prep
+\end_layout
+
+\end_inset
+
+change directory to system-prep directory (inside my current directory)
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd -
+\end_layout
+
+\end_inset
+
+change to previous directory
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cd ~
+\end_layout
+
+\end_inset
+
+change to home directory
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ls
+\end_layout
+
+\end_inset
+
+List files and folders inside current directory
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vim <file_name>
+\end_layout
+
+\end_inset
+
+Open file in the vim text editor
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Example:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vim jarvis.cpp
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cp /path/to/source/file /path/for/destination/file
+\end_layout
+
+\end_inset
+
+Copy a file
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mv /path/to/source/file /path/for/destination/file
+\end_layout
+
+\end_inset
+
+Move a file
+\end_layout
+
+\begin_layout Section
+Basic vim Commands
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+a
+\end_layout
+
+\end_inset
+
+=Enter insert mode for editing
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+Escape key
+\end_layout
+
+\end_inset
+
+=Exit insert mode
+\end_layout
+
+\begin_layout Itemize
+While not in insert mode (default when opening document)
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+:q
+\end_layout
+
+\end_inset
+
+= Exit
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+:q!
+\end_layout
+
+\end_inset
+
+= Exit without saving changes
+\end_layout
+
+\begin_layout Itemize
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+:qw
+\end_layout
+
+\end_inset
+
+= Exit with saving changes
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
