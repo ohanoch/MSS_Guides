@@ -328,7 +328,7 @@ Click on "Setup":
 
 
 \begin_inset Graphics
-	filename images/netgear_setup.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_setup.wmf
 	scale 50
 
 \end_inset
@@ -343,7 +343,7 @@ Go to "Wireless Setup":
 
 
 \begin_inset Graphics
-	filename images/netgear_wireless_setup.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_wireless_setup.wmf
 	scale 50
 
 \end_inset
@@ -359,7 +359,7 @@ Set "Region" to "Africa (may not be necessary):
 
 
 \begin_inset Graphics
-	filename images/netgear_region_selection.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_region_selection.wmf
 	scale 50
 
 \end_inset
@@ -382,7 +382,7 @@ Change "Name (SSID)" to an SSID of your choice (in this guide we choose
 
 
 \begin_inset Graphics
-	filename images/netgear_ssid_dronenet.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_ssid_dronenet.wmf
 	scale 50
 
 \end_inset
@@ -397,7 +397,7 @@ In "Security Options" choose "None":
 
 
 \begin_inset Graphics
-	filename images/netgear_security_options.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_security_options.wmf
 	scale 50
 
 \end_inset
@@ -413,7 +413,7 @@ Everything else should stay as is, so the final result should look like:
 
 
 \begin_inset Graphics
-	filename images/netgear_wireless_dronenet_settings1.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_wireless_dronenet_settings1.wmf
 	scale 50
 
 \end_inset
@@ -424,7 +424,7 @@ Everything else should stay as is, so the final result should look like:
 
 
 \begin_inset Graphics
-	filename images/netgear_wireless_dronenet_settings2.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_wireless_dronenet_settings2.wmf
 	scale 50
 
 \end_inset
@@ -439,7 +439,7 @@ Click "Apply" at the top:
 
 
 \begin_inset Graphics
-	filename images/netgear_apply_green.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_apply_green.wmf
 	scale 50
 
 \end_inset
@@ -459,7 +459,7 @@ Go to "LAN Setup" on the left:
 
 
 \begin_inset Graphics
-	filename images/netgear_lan_setup.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_lan_setup.wmf
 	scale 50
 
 \end_inset
@@ -507,7 +507,7 @@ By the end it should look something like this:
 
 
 \begin_inset Graphics
-	filename images/netgear_lan_settings.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_lan_settings.wmf
 	scale 50
 
 \end_inset
@@ -523,7 +523,7 @@ Click "Apply" at the top:
 
 
 \begin_inset Graphics
-	filename images/netgear_apply_green.wmf
+	filename /home/ash/Documents/MSS_Guides/NetGear/images/netgear_apply_green.wmf
 	scale 50
 
 \end_inset
