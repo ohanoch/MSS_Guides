@@ -302,7 +302,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename images/700px-Wiring_USB.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/700px-Wiring_USB.png
 
 \end_inset
 
@@ -893,7 +893,7 @@ This is mostly based on instructions from http://wiki.ros.org/mocap_optitrack
 \begin_layout Enumerate
 In motive go to the streaming pane (using the button 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_stream_button.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_stream_button.png
 
 \end_inset
 
@@ -911,7 +911,7 @@ Press on the three dots at the top and "Show Advance
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_streaming_show_advanced.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_streaming_show_advanced.png
 	scale 50
 
 \end_inset
@@ -972,7 +972,7 @@ Final Streaming data pane should look similar to:
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_streaming_final.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_streaming_final.png
 	scale 50
 
 \end_inset
@@ -1017,7 +1017,7 @@ Take all infra-red reflective markers out of your tracking area
 \begin_layout Enumerate
 Go to the calibration pane (using the button 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_calibration_icon.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_calibration_icon.png
 
 \end_inset
 
@@ -1032,7 +1032,7 @@ In the camera preview pane mark all of the infrared reflections using the
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_calibration_mark_IR.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_calibration_mark_IR.png
 	scale 50
 
 \end_inset
@@ -1063,7 +1063,7 @@ Start Wanding
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_calibration_start_wanding.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_calibration_start_wanding.png
 	scale 50
 
 \end_inset
@@ -1100,7 +1100,7 @@ Calibration
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_calibration_calculate.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_calibration_calculate.png
 	scale 50
 
 \end_inset
@@ -1150,6 +1150,41 @@ Exceptional
 \end_layout
 
 \end_deeper
+\begin_layout Enumerate
+You can now go to the 
+\begin_inset Quotes eld
+\end_inset
+
+Ground Plane
+\begin_inset Quotes erd
+\end_inset
+
+ tab (still in the calibration pane) and make sure your plane and camera
+ location is as expected
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Play around with 
+\begin_inset Quotes eld
+\end_inset
+
+Capture Volume Translation
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Capture Volume Rotation
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_deeper
 \begin_layout Subsection
 Creating Rigid Body 
 \end_layout
@@ -1190,7 +1225,7 @@ Change view to 3D perspective view pane if you are only in camera preview
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_3d_camera_view_icon.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_3d_camera_view_icon.png
 	scale 50
 
 \end_inset
@@ -1205,7 +1240,7 @@ Change view to 3D perspective view pane if you are only in camera preview
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_3d_camera_view.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_3d_camera_view.png
 	scale 50
 
 \end_inset
@@ -1237,7 +1272,7 @@ rays
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_camera_rays.PNG
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_camera_rays.PNG
 	scale 50
 
 \end_inset
@@ -1260,7 +1295,7 @@ From Perspective View: While the markers are selected, right-click on the
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_create_rigid_body.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_create_rigid_body.png
 	scale 50
 
 \end_inset
@@ -1278,7 +1313,7 @@ Once the rigid body is created, the markers will be colored (labeled) and
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_rigid_body_ready.PNG
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_rigid_body_ready.PNG
 	scale 50
 
 \end_inset
@@ -1323,7 +1358,7 @@ Assets
 
  pane (using the button 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_assets_icon.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_assets_icon.png
 
 \end_inset
 
@@ -1345,7 +1380,7 @@ Rename
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/motive_assets_rename.png
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_assets_rename.png
 	scale 50
 
 \end_inset
@@ -1460,7 +1495,7 @@ If everything is OK you should now see XYZ positions as well as XYZW orientation
 
 
 \begin_inset Graphics
-	filename images/motive_screenshots/vrpn_client_ros_topic_output.PNG
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/vrpn_client_ros_topic_output.PNG
 	scale 50
 
 \end_inset
