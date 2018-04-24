@@ -1150,41 +1150,6 @@ Exceptional
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
-You can now go to the 
-\begin_inset Quotes eld
-\end_inset
-
-Ground Plane
-\begin_inset Quotes erd
-\end_inset
-
- tab (still in the calibration pane) and make sure your plane and camera
- location is as expected
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-Play around with 
-\begin_inset Quotes eld
-\end_inset
-
-Capture Volume Translation
-\begin_inset Quotes erd
-\end_inset
-
- and 
-\begin_inset Quotes eld
-\end_inset
-
-Capture Volume Rotation
-\begin_inset Quotes erd
-\end_inset
-
-
-\end_layout
-
-\end_deeper
 \begin_layout Subsection
 Creating Rigid Body 
 \end_layout
@@ -1504,6 +1469,203 @@ If everything is OK you should now see XYZ positions as well as XYZW orientation
 \end_layout
 
 \end_deeper
+\begin_layout Section
+Final calibration
+\end_layout
+
+\begin_layout Standard
+to make sure your xyz axis are the same as the ones in Motive you should:
+\end_layout
+
+\begin_layout Enumerate
+Place your real drone where you would like the xyz origin to be
+\end_layout
+
+\begin_layout Enumerate
+Center and orientate rigid body pivot:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Select your rigid body in the 3d perspective view pane (click and drag a
+ box around it)
+\end_layout
+
+\begin_layout Enumerate
+Go to 
+\begin_inset Quotes eld
+\end_inset
+
+Edit
+\begin_inset Quotes erd
+\end_inset
+
+ tab in the 
+\begin_inset Quotes eld
+\end_inset
+
+Rigid Body
+\begin_inset Quotes erd
+\end_inset
+
+ pane
+\end_layout
+
+\begin_layout Enumerate
+Translate and rotate the pivot point until it is in the center of your object
+ and the xyz axis of the object are what you want them to be.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+You can now go to the 
+\begin_inset Quotes eld
+\end_inset
+
+Ground Plane
+\begin_inset Quotes erd
+\end_inset
+
+ tab in the 
+\begin_inset Quotes eld
+\end_inset
+
+Calibration
+\begin_inset Quotes erd
+\end_inset
+
+ pane (
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_calibration_icon.png
+
+\end_inset
+
+) and make sure your plane and camera location is as expected
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Play around with 
+\begin_inset Quotes eld
+\end_inset
+
+Capture Volume Translation
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+Capture Volume Rotation
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+When you change a variable and apply it then it is not relative to a center
+ point, i.e.
+ it does not mean translate to these xyz coordinates.
+ What it does do is translate/rotate in relation to its current position.
+ Thus translating with x=1 will cancel out a previous movement of x=-1.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If you look at the vrpn_ros_client topic for your object on your Ubuntu
+ PC you should be able to see the current position and orientation: 
+\begin_inset listings
+lstparams "language=bash"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rostopic echo /vrpn_client_node/<name_of_rigid_body_in_motive>/pose
+\end_layout
+
+\end_inset
+
+i.e.
+ for rigid body named 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone1
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rostopic echo /vrpn_client_node/ardrone1/pose
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Continue changing the translation and rotation until you get as close to
+ zero as possible on all positions and orientations (except for w)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+You should see that the xyz axis correspond to those on the world grid in
+ Motive when you get this correct
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Notice:
+\end_layout
+
+\begin_layout Plain Layout
+Depending on how many cameras you are using, how well the cameras were calibrate
+d, and other factors (like if the cameras accidentally got moved any tiny
+ bit since calibration) there might be some minor inconsistencies when moving
+ the drone around.
+ We want to minimize these, but getting rid of them completely is nearly
+ impossible.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Congratulations
 \end_layout
