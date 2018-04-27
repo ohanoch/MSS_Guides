@@ -1508,7 +1508,13 @@ Rigid Body
 \begin_inset Quotes erd
 \end_inset
 
- pane
+ pane (
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_rigid_body_icon.PNG
+
+\end_inset
+
+)
 \end_layout
 
 \begin_layout Enumerate
@@ -1571,6 +1577,17 @@ When you change a variable and apply it then it is not relative to a center
  it does not mean translate to these xyz coordinates.
  What it does do is translate/rotate in relation to its current position.
  Thus translating with x=1 will cancel out a previous movement of x=-1.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/motive_screenshots/motive_ground_plane_rotation_translation.PNG
+	scale 50
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
