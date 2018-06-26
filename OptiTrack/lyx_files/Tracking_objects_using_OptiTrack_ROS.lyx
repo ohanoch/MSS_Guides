@@ -1470,15 +1470,159 @@ If everything is OK you should now see XYZ positions as well as XYZW orientation
 
 \end_deeper
 \begin_layout Section
-Final calibration
+Finalizing Calibration
 \end_layout
 
 \begin_layout Standard
-to make sure your xyz axis are the same as the ones in Motive you should:
+This step will make the 3D axis in Motive correspond to those you are using
+ in the real world.
+\end_layout
+
+\begin_layout Subsection
+Auto Calibration
+\end_layout
+
+\begin_layout Standard
+Motive has an option to automatically set the axis corresponding to the
+ calibration square (comes part of the Optitrack kit, see image).
+ The best explanation for this can be found in the official 
+\begin_inset CommandInset href
+LatexCommand href
+name "Optitrack docs"
+target "https://v20.wiki.optitrack.com/index.php?title=Calibration#Ground_Plane_and_Origin"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename /home/ash/Documents/MSS_Guides/OptiTrack/images/calibration_square.jpg
+	scale 50
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+I will mention the steps here as well:
 \end_layout
 
 \begin_layout Enumerate
-Place your real drone where you would like the xyz origin to be
+Put markers on the calibration square as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+1 marker in the center
+\end_layout
+
+\begin_layout Enumerate
+1 marker on each axis - for the z axis use farther peg, for x axis use closer
+ peg.
+ (You can ignore notation for Z axis, you can use it as your X axis)
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Put the calibration square where you want the origin of the axis to be.
+\end_layout
+
+\begin_layout Enumerate
+Lift the feet of the square by screwing the legs in and out if your floor
+ is uneven until the square is level.
+ 
+\end_layout
+
+\begin_layout Enumerate
+In Motive:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Select the 3 markers
+\end_layout
+
+\begin_layout Enumerate
+In the calibration pane under the 
+\begin_inset Quotes eld
+\end_inset
+
+Ground Pane
+\begin_inset Quotes erd
+\end_inset
+
+ look at 
+\begin_inset Quotes eld
+\end_inset
+
+Ground Pane Calibration Square
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Set 
+\begin_inset Quotes eld
+\end_inset
+
+Vertical offset
+\begin_inset Quotes erd
+\end_inset
+
+ to the distance (in mm) from the ground to the center of your marker.
+ Without lifting the feet this was 45mm for me.
+\end_layout
+
+\begin_layout Enumerate
+Click 
+\begin_inset Quotes eld
+\end_inset
+
+Set Ground Pane
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+You should see the orientation of the 3D axis in Motive change appropriately.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+If your floor isn't level you might also want to refine your ground plane.
+ As I have not done that myself I will not explain it here, but you can
+ find the official explanation in the docs mentioned above.
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Manual Calibration
+\end_layout
+
+\begin_layout Standard
+If the 
+\begin_inset Quotes eld
+\end_inset
+
+Set Ground Pane
+\begin_inset Quotes erd
+\end_inset
+
+ results aren't satisfactory you can manually adjust the ground plane.
+ To do this:
+\end_layout
+
+\begin_layout Enumerate
+Place your real drone (or any set of markers you can identify) where you
+ would like the xyz origin to be
 \end_layout
 
 \begin_layout Enumerate
