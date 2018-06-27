@@ -1,0 +1,1040 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\rightmargin 2cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Launching Multiple AR-Drones Using ROS Guide
+\end_layout
+
+\begin_layout Author
+Made by Or Hanoch for MSS at the University of the Witwatersrand
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{section}{-1}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+section{Introduction}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This guide assumes you have configured your router to have a local LAN distribut
+ing its own IP address using DHCP.
+ Instructions on this using a NETGEAR Nighthawk R7000 can be found in a
+ separate guide titled 
+\begin_inset Quotes eld
+\end_inset
+
+NETGEAR Nighthawk (R7000) Router Setup Guide For AR-Drone Use (Multiple
+ Drones)
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This guide will show you how to configure the AR-Drones themselves to connect
+ to our local LAN and how to make a launch file in order to launch them
+ using ROS.
+ This guide was tested using ROS kinetic on Ubuntu 16.04.
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This guide was mostly taken from:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/AutonomyLab/ardrone_autonomy/wiki/Multiple-AR-Drones"
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Starting State
+\end_layout
+
+\begin_layout Standard
+In this guide we continue directly from the 
+\begin_inset Quotes eld
+\end_inset
+
+NETGEAR Nighthawk (R7000) Router Setup Guide For AR-Drone Use (Multiple
+ Drones)
+\begin_inset Quotes erd
+\end_inset
+
+ guide.
+ This starts us off with the following:
+\end_layout
+
+\begin_layout Itemize
+We have a router configured with its own local LAN and distributing IP addresses
+ using DHCP.
+\end_layout
+
+\begin_layout Itemize
+The name of the routers network is 
+\begin_inset Quotes eld
+\end_inset
+
+dronenet
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Our PC is connected to the router (and its local LAN) via Ethernet and has
+ no other network connection.
+\end_layout
+
+\begin_layout Itemize
+For this guide we will also need a separate computer capable of connecting
+ to the drones wifi network.
+\end_layout
+
+\begin_layout Section
+Drone Configuration
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Note:
+\end_layout
+
+\begin_layout Plain Layout
+This section requires you to have a separate computer with wifi.
+\begin_inset Newline newline
+\end_inset
+
+This is due to your router not being configured to bridge the connection.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Changing Drone Settings
+\end_layout
+
+\begin_layout Enumerate
+Connect to your AR-Drone's ad-hoc wifi (directly to the drones wifi router,
+ like you would connect to any wifi connection)
+\end_layout
+
+\begin_layout Enumerate
+Open the terminal and telnet to the drone:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Run:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+telnet 192.168.1.1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+create a file called wifi.sh in /data of the drone:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+vi /data/wifi.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Copy the following into the file:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+killall udhcpd
+\end_layout
+
+\begin_layout Plain Layout
+
+ifconfig ath0 down
+\end_layout
+
+\begin_layout Plain Layout
+
+iwconfig ath0 mode managed essid dronenet
+\end_layout
+
+\begin_layout Plain Layout
+
+ifconfig ath0 192.168.1.10 netmask 255.255.255.0 up
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Notice:
+\end_layout
+
+\begin_layout Itemize
+In line 3 change "dronenet" to the SSID you chose when setting up the router.
+\end_layout
+
+\begin_layout Itemize
+The IP in line 4 should be unique to each drone, so change it between different
+ drones.
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+If you are not familiar with vi:
+\end_layout
+
+\begin_layout Itemize
+To enter insert mode in vi press "i".
+\end_layout
+
+\begin_layout Itemize
+To save and exit vi press "esc" to exit insert mode and then ":wq")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Make the newly created file executable:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+chmod +x /data/wifi.sh
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Close the telnet connection:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+exit
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Run wifi.sh from PC:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Notice:
+\end_layout
+
+\begin_layout Plain Layout
+While the previouse sections should only be done once, this step should
+ be done whenever you want to make the AR-Drone connect to your wireless
+ (for example every time you turn on the drone)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Connect to your AR-Drone's ad-hoc wifi (directly to the drones wifi router,
+ like you would connect to any wifi connection)
+\end_layout
+
+\begin_layout Enumerate
+Open a terminal
+\end_layout
+
+\begin_layout Enumerate
+Execute the following command to remotly run wifi.sh on the drone:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+echo "./data/wifi.sh" | telnet 192.168.1.1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Your computer should now disconnect from the drones network.
+ This is due to the drone's network configurations being changed.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+On the computer that is connected to the previously configured routers wireless
+ network check that you have connection to the drone using ping:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+ping 192.168.1.10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Where the IP address is the same as the one configured in wifi.sh of this
+ drone.
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Run the ROS Driver (can be skipped)
+\end_layout
+
+\begin_layout Standard
+When connecting to the drone using ROS you will need to make sure to supply
+ the correct drone IP to ardrone_autonomy.
+ This can be done by:
+\end_layout
+
+\begin_layout Enumerate
+If running ardrone_autonomy directly in the command line use:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rosrun ardrone_autonomy ardrone_driver -ip 192.168.1.10
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+If using a launch file add/change in the node line the argument:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+args="-ip 192.168.1.10"
+\end_layout
+
+\end_inset
+
+ Thus you will end up with something like:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<node name="ardrone_driver" pkg="ardrone_autonomy"
+\end_layout
+
+\begin_layout Plain Layout
+
+type="ardrone_driver" args="-ip 192.168.1.10" />
+\end_layout
+
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+
+\series bold
+\bar under
+Notice:
+\end_layout
+
+\begin_layout Itemize
+The IP address in the above examples should be the same as the one configured
+ in the wifi.sh file of this drone.
+\end_layout
+
+\begin_layout Itemize
+\noindent
+Make sure to give the different nodes for different drones different names,
+ i.e:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<node name="ardrone_driver1" pkg="ardrone_autonomy"
+\end_layout
+
+\begin_layout Plain Layout
+
+type="ardrone_driver" args="-ip 192.168.1.10" />
+\end_layout
+
+\end_inset
+
+ and
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<node name="ardrone_driver2" pkg="ardrone_autonomy"
+\end_layout
+
+\begin_layout Plain Layout
+
+type="ardrone_driver" args="-ip 192.168.1.12" />
+\end_layout
+
+\end_inset
+
+If using two drones, one with the ip 192.168.1.10 called 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone_driver1
+\begin_inset Quotes erd
+\end_inset
+
+ and the other with ip 192.168.1.12 called 
+\begin_inset Quotes eld
+\end_inset
+
+ardrone_driver2
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+You will notice that even though you are controlling multiple drones now,
+ you can't send them separate commands.
+ If you run 
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+rostopic list
+\end_layout
+
+\end_inset
+
+You will see that the different drones do not have separate topics.
+ In order to get separate topics for each drone you need to remap the topics
+ in the launch files, writing above each drones node:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<remap from="/name/of/topic" to="/new/name/of/topic"/> 
+\end_layout
+
+\end_inset
+
+i.e to change the /ardrone/takeoff topic to /ardrone1/takeoff:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<remap from="/ardrone/takeoff" to="/ardrone1/takeoff"/> 
+\end_layout
+
+\end_inset
+
+ By remapping the topics to different names for each drone you will now
+ have control of each drone via its own topics.
+\end_layout
+
+\begin_layout Enumerate
+Run using:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+roslaunch <name_of_launch_file>
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Section
+Script For Launching Multiple Drones Easily
+\end_layout
+
+\begin_layout Standard
+If using multiple drones it can be easier to use a launch file that launches
+ a single drone, and edit it to remap the topics to a given name.
+ Thus you can run that file with a script multiple times in order to launch
+ multiple drones easily, and you won't need to edit the launch file itself
+ to a ridiculous extent.
+ The script is a simple for loop that calls the launch file with different
+ names and IPs as parameters, and the launch file takes those parameters
+ as inputs and launches a single drone using them.
+\end_layout
+
+\begin_layout Itemize
+Lanuch file - launch_multi_drone.launch:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+lstparams "language=XML"
+inline false
+status open
+
+\begin_layout Plain Layout
+
+<launch>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<!-- declare variables to be taken in from parameters -->
+\end_layout
+
+\begin_layout Plain Layout
+
+	<arg name="droneip" default="192.168.1.1" />
+\end_layout
+
+\begin_layout Plain Layout
+
+	<arg name="drone_name" default="ardrone"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	<!-- remap ardrone topics to specific topics per drone -->
+\end_layout
+
+\begin_layout Plain Layout
+
+	<remap from="/ardrone/land" to="/$(arg drone_name)/land"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+	.
+\end_layout
+
+\begin_layout Plain Layout
+
+	.
+ About 30 remaps.
+ run `rostopic list` to get a list of topics.
+\end_layout
+
+\begin_layout Plain Layout
+
+	.
+\end_layout
+
+\begin_layout Plain Layout
+
+	<remap from="/ardrone/takeoff" to="/$(arg drone_name)/takeoff"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+	<remap from="cmd_vel" to="/$(arg drone_name)/cmd_vel"/>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	<!-- create node for drone -->
+\end_layout
+
+\begin_layout Plain Layout
+
+	<node name="$(arg drone_name)_driver1" pkg="ardrone_autonomy"
+\end_layout
+
+\begin_layout Plain Layout
+
+	type="ardrone_driver" output="screen" args="-ip $(arg droneip)">
+\end_layout
+
+\begin_layout Plain Layout
+
+		<param name="navdata_demo" value="False" />
+\end_layout
+
+\begin_layout Plain Layout
+
+		<param name="realtime_navdata" value="True" />
+\end_layout
+
+\begin_layout Plain Layout
+
+		<param name="realtime_video" value="True" />
+\end_layout
+
+\begin_layout Plain Layout
+
+		<param name="looprate" value="30" />
+\end_layout
+
+\begin_layout Plain Layout
+
+	</node>
+\end_layout
+
+\begin_layout Plain Layout
+
+</launch> 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Run BASH script - launch_multi_drone.sh:
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+#!/bin/bash
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+# This bash script will run launch_multi_drone.launch with
+\end_layout
+
+\begin_layout Plain Layout
+
+# different drone names for the amount of drones specified.
+\end_layout
+
+\begin_layout Plain Layout
+
+# This will initialize nodes for the amount of drones specified
+\end_layout
+
+\begin_layout Plain Layout
+
+# as well as separate topics for each drone.
+\end_layout
+
+\begin_layout Plain Layout
+
+# Each drones topic will be of the form /ardrone#/<topic_name>.
+\end_layout
+
+\begin_layout Plain Layout
+
+# i.e /ardrone/takeoff => /ardrone42/takeoff for drone # 42
+\end_layout
+
+\begin_layout Plain Layout
+
+# usage: launch_multiple_drones.sh <num_of_drones>
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+for (( i=1; i<=$1; i++))
+\end_layout
+
+\begin_layout Plain Layout
+
+do
+\end_layout
+
+\begin_layout Plain Layout
+
+	roslaunch launch_multi_drone.launch
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		drone_name:=ardrone$i droneip:=192.168.1.$((9+$i)) &
+\end_layout
+
+\begin_layout Plain Layout
+
+	sleep 15
+\end_layout
+
+\begin_layout Plain Layout
+
+done
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
