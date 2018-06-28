@@ -1036,5 +1036,37 @@ done
 
 \end_layout
 
+\begin_layout Itemize
+Save both files in the same directory
+\end_layout
+
+\begin_layout Itemize
+To run the script:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+launch_multiple_drones.sh <num_of_drones>
+\end_layout
+
+\end_inset
+
+i.e for 2 drones:
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+launch_multiple_drones.sh 2
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_body
 \end_document
